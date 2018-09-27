@@ -1,10 +1,10 @@
 import json
 import time
 
-with open('shyam_json_1.json') as f:
+with open('/home/jcl-mh/ropha_ws/src/ropha_controller_interface/src/shyam_json_1.json') as f:
     data = json.load(f)
     
-with open("shyam_final.txt", "w") as f:
+with open("/home/jcl-mh/ropha_ws/src/ropha_controller_interface/src/shyam_final.txt", "w") as f:
     
     tic = time.clock()
     for i in range(len(data['Template']['motions_'][0]['references_']['states_'])):

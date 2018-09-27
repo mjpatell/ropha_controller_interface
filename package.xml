@@ -7,7 +7,7 @@
   <maintainer email="mjp@todo.todo">mjp</maintainer>
 
   <license>TODO</license>
-
+  <buildtool_depend>catkin</buildtool_depend>
   <depend>actionlib</depend>
   <depend>boost</depend>
   <depend>geometry_msgs</depend>
