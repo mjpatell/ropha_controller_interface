@@ -21,26 +21,39 @@ import json
 #header.stamp = rospy.get_rostime()
 
 
-#def parse_file(self, shyam_json_1):
-    # open recorded file
-with open("shyam_json_1.json", 'r') as f:
+def joint_names(joint_name):
+    print(joint_name)
+
+def point_data(point_positions):
+    print(point_positions)
+
+def write_jointnames(joint_name, point_positions):
+    with open("shyam.txt", "w"):
+        print(joint_name)
+    with open("shyam.txt", "a"):
+        print(point_positions)
+
+#def write_positions(point_positions):
+
+with open('shyam_json_1.json') as f:
     data = json.load(f)
+    a = []; b = []; c = []
     for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:
-            # read joint names specified in file
-        joint_names = item['name_']
-        print (joint_names)
-    print ("\n\n\n\n")
+        # read joint names specified in file
+        a.append(item['name_'])
+    joint_names(a)
 
     for i in range(len(data['Template']['motions_'][0]['references_']['states_'])):
         for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:
-            points_data = item['value_']
-            print (points_data)
-        print ("\n \n \n")
+            c.append(item['value_'])
+        b.append(c)
+    point_data(b)
+    write_jointnames(a, b)
+
+
 
 #def write_jointnames(self):
-   #print(parse_file(self))
+        #print(ReadData.parse_file())
 
 #def write_positions(self):
- #   print(self.points_data)
-
-
+    #print(parse_file(self.points_data))
