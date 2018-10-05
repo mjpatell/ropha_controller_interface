@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b235124-bf17-4a22-b2e2-b64a68e0c582" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Trajectory.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trajectory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shyam.txt" beforeDir="false" afterPath="$PROJECT_DIR$/shyam.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,45 +21,46 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="2511" />
+          <entry key="py" value="3119" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="2511" />
+          <entry key="Python" value="3119" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="txt" value="3" />
+          <entry key="txt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PLAIN_TEXT" value="3" />
+          <entry key="PLAIN_TEXT" value="4" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Trajectory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
+            <state relative-caret-position="795">
+              <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
               <folding>
-                <element signature="e#312#323#0" expanded="true" />
-                <marker date="1538730498748" expanded="true" signature="516:521" ph="..." />
-                <marker date="1538730498748" expanded="true" signature="597:730" ph="..." />
-                <marker date="1538730498748" expanded="true" signature="908:1134" ph="..." />
-                <marker date="1538730498748" expanded="true" signature="1133:1134" ph="..." />
+                <element signature="e#19#31#0" expanded="true" />
+                <marker date="1538742885905" expanded="true" signature="1408:1413" ph="..." />
+                <marker date="1538742885905" expanded="true" signature="1758:2051" ph="..." />
+                <marker date="1538742885905" expanded="true" signature="2101:2234" ph="..." />
+                <marker date="1538742885905" expanded="true" signature="2412:2638" ph="..." />
+                <marker date="1538742885905" expanded="true" signature="2637:2638" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shyam.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -163,13 +162,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25538972" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.11719182" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39958158" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -189,22 +189,23 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/shyam.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Trajectory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
+        <state relative-caret-position="795">
+          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
           <folding>
-            <element signature="e#312#323#0" expanded="true" />
-            <marker date="1538730498748" expanded="true" signature="516:521" ph="..." />
-            <marker date="1538730498748" expanded="true" signature="597:730" ph="..." />
-            <marker date="1538730498748" expanded="true" signature="908:1134" ph="..." />
-            <marker date="1538730498748" expanded="true" signature="1133:1134" ph="..." />
+            <element signature="e#19#31#0" expanded="true" />
+            <marker date="1538742885905" expanded="true" signature="1408:1413" ph="..." />
+            <marker date="1538742885905" expanded="true" signature="1758:2051" ph="..." />
+            <marker date="1538742885905" expanded="true" signature="2101:2234" ph="..." />
+            <marker date="1538742885905" expanded="true" signature="2412:2638" ph="..." />
+            <marker date="1538742885905" expanded="true" signature="2637:2638" ph="..." />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shyam.txt">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
