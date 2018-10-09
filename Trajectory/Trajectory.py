@@ -38,8 +38,8 @@ class Trajectory:
 
     def positions(self, jointnames, pointposition, pointvelocity, pointacceleration, duration):
         self.pos = FollowJointTrajectoryGoal()
-        self.pos.trajectory.joint_names = self.jointnames = self.write_jointnames(jointnames)
-        self.pos.trajectory.points.positions = self.pointposition
+        self.pos.trajectory.joint_names = self.jointnames = self.read_data(jointnames)
+        self.pos.trajectory.points.positions = self.pointposition = self.position_vector(pointposition)
         self.pos.trajectory.points.velocities = self.pointvelocity
         self.pos.trajectory.points.acceleration = self.pointacceleration
         self.pos.trajectory.points.time_from_start = self.duration = rospy.Duration
@@ -47,7 +47,7 @@ class Trajectory:
         return self.pos
 
     def position_vector(self, p = []):
-        self.p = self.write_jointnames(p)
+        self.p = self.read_data(p)
         position = PoseStamped()
         position.pose.position.x = float(p[0])
         position.pose.position.y = float(p[1])
@@ -57,11 +57,11 @@ class Trajectory:
         position.pose.orientation.z = float(p[5])
         position.pose.orientation.w = float(p[6])
 
-        return position
+        self.positions(self, p)
 
     def add_point(self, positions, time):
         point = JointTrajectoryPoint()
-        point.positions = self.write_jointnames(positions)
+        point.positions = self.read_data(positions)
         point.time_from_start = rospy.Duration(time)
 
 
@@ -131,6 +131,8 @@ class Trajectory:
             d.append(vel)
             e.append(acc)
             self.write_velocity(self, vel, acc)
+            self.positions(self, vel)
+            self.positions(self, acc)
 
 
 #def write_jointnames(self):
