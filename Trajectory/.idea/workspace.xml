@@ -15,18 +15,18 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.3" value="2" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.3" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="3119" />
+          <entry key="py" value="4426" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="3119" />
+          <entry key="Python" value="4426" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -46,15 +46,24 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Trajectory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="795">
-              <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+            <state relative-caret-position="345">
+              <caret line="83" column="40" lean-forward="true" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
               <folding>
                 <element signature="e#19#31#0" expanded="true" />
-                <marker date="1538742885905" expanded="true" signature="1408:1413" ph="..." />
-                <marker date="1538742885905" expanded="true" signature="1758:2051" ph="..." />
-                <marker date="1538742885905" expanded="true" signature="2101:2234" ph="..." />
-                <marker date="1538742885905" expanded="true" signature="2412:2638" ph="..." />
-                <marker date="1538742885905" expanded="true" signature="2637:2638" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="375:380" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="567:572" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="669:674" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="1070:1075" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="1070:2591" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="1554:1960" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="1988:1993" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="2226:2231" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="2390:2395" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="2505:2510" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="2505:2591" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="2651:2656" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="3004:3009" ph="..." />
+                <marker date="1539082841387" expanded="true" signature="3282:3287" ph="..." />
               </folding>
             </state>
           </provider>
@@ -189,23 +198,32 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/shyam.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Trajectory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+        <state relative-caret-position="345">
+          <caret line="83" column="40" lean-forward="true" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
           <folding>
             <element signature="e#19#31#0" expanded="true" />
-            <marker date="1538742885905" expanded="true" signature="1408:1413" ph="..." />
-            <marker date="1538742885905" expanded="true" signature="1758:2051" ph="..." />
-            <marker date="1538742885905" expanded="true" signature="2101:2234" ph="..." />
-            <marker date="1538742885905" expanded="true" signature="2412:2638" ph="..." />
-            <marker date="1538742885905" expanded="true" signature="2637:2638" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="375:380" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="567:572" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="669:674" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="1070:1075" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="1070:2591" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="1554:1960" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="1988:1993" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="2226:2231" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="2390:2395" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="2505:2510" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="2505:2591" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="2651:2656" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="3004:3009" ph="..." />
+            <marker date="1539082841387" expanded="true" signature="3282:3287" ph="..." />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shyam.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
