@@ -14,6 +14,7 @@ from geometry_msgs.msg import *
 import roslib
 import json
 import argparse
+import copy
 
 
 class Trajectory:
@@ -29,24 +30,24 @@ class Trajectory:
     #print(point_positions)
 
     def create_frame(self, sequence, stamp_secs, stamp_nsecs, frame_id):
-        pos = FollowJointTrajectoryGoal()
-        pos.trajectory.header.seq = self.sequence
-        pos.trajectory.header.stamp.secs = self.stamp_secs = rospy.Time.secs
-        pos.trajectory.header.stamp.nsecs = self.stamp_nsecs = rospy.Time.nsecs
-        pos.trajectory.header.frame_id = self.frame_id
+        self.pos = FollowJointTrajectoryGoal()
+        self.pos.trajectory.header.seq = self.sequence
+        self.pos.trajectory.header.stamp.secs = self.stamp_secs = rospy.Time.secs
+        self.pos.trajectory.header.stamp.nsecs = self.stamp_nsecs = rospy.Time.nsecs
+        self.pos.trajectory.header.frame_id = self.frame_id
 
     def positions(self, jointnames, pointposition, pointvelocity, pointacceleration, duration):
-        pos = FollowJointTrajectoryGoal()
-        pos.trajectory.joint_names = self.jointnames
-        pos.trajectory.points.positions = self.pointposition
-        pos.trajectory.points.velocities = self.pointvelocity
-        pos.trajectory.points.acceleration = self.pointacceleration
-        pos.trajectory.points.time_from_start = self.duration = rospy.Duration
+        self.pos = FollowJointTrajectoryGoal()
+        self.pos.trajectory.joint_names = self.jointnames = self.write_jointnames(jointnames)
+        self.pos.trajectory.points.positions = self.pointposition
+        self.pos.trajectory.points.velocities = self.pointvelocity
+        self.pos.trajectory.points.acceleration = self.pointacceleration
+        self.pos.trajectory.points.time_from_start = self.duration = rospy.Duration
 
-        return pos
+        return self.pos
 
     def position_vector(self, p = []):
-        self.p = self.write_jointnames(point_positions=[])
+        self.p = self.write_jointnames(p)
         position = PoseStamped()
         position.pose.position.x = float(p[0])
         position.pose.position.y = float(p[1])
@@ -58,6 +59,11 @@ class Trajectory:
 
         return position
 
+    def add_point(self, positions, time):
+        point = JointTrajectoryPoint()
+        point.positions = self.write_jointnames(positions)
+        point.time_from_start = rospy.Duration(time)
+
 
     def follow_traj_client(pos):
         client = actionlib.ActionClient
@@ -67,17 +73,17 @@ class Trajectory:
         return client.get_result()
 
     def goal_ID(self, goal_id, goal_stamp):
-        goal = FollowJointTrajectoryActionGoal()
-        goal.goal_id.id = self.goal_id
-        goal.goal_id.stamp = self.goal_stamp
+        self.goal = FollowJointTrajectoryActionGoal()
+        self.goal.goal_id.id = self.goal_id
+        self.goal.goal_id.stamp = self.goal_stamp
 
-    def path_tolerence(self):
-        path_tol = FollowJointTrajectoryGoal.goal_tolerance
-        print(path_tol)
+    def path_tolerence(self, path_tol):
+        self.path_tol = FollowJointTrajectoryGoal.goal_tolerance
+        print(self.path_tol)
 
-    def goal_tolerence(self):
-        goal_tol = FollowJointTrajectoryGoal.goal_tolerance
-        print(goal_tol)
+    def goal_tolerence(self, goal_tol):
+        self.goal_tol = FollowJointTrajectoryGoal.goal_tolerance
+        print(self.goal_tol)
 
     def write_jointnames(self, joint_name, point_positions):
         with open('shyam.txt', 'w') as f:
@@ -113,6 +119,10 @@ class Trajectory:
                 b.append(c)
         #point_data(b)
             self.write_jointnames(self, a, b)
+            self.add_point(self, b)
+            self.position_vector(self, b)
+            self.positions(self, a)
+
         #write_positions(b)
         #for item in range(len(data['Template']['motions_'][0]['properties_']['dynamics_'])):
             d = []; e = []
