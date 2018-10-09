@@ -38,16 +38,16 @@ class Trajectory:
 
     def positions(self, jointnames, pointposition, pointvelocity, pointacceleration, duration):
         self.pos = FollowJointTrajectoryGoal()
-        self.pos.trajectory.joint_names = self.jointnames = self.read_data(jointnames)
+        self.pos.trajectory.joint_names = self.jointnames = self.read_data()
         self.pos.trajectory.points.positions = self.pointposition = self.position_vector(pointposition)
-        self.pos.trajectory.points.velocities = self.pointvelocity
-        self.pos.trajectory.points.acceleration = self.pointacceleration
+        self.pos.trajectory.points.velocities = self.pointvelocity = self.read_data()
+        self.pos.trajectory.points.acceleration = self.pointacceleration = self.read_data()
         self.pos.trajectory.points.time_from_start = self.duration = rospy.Duration
 
         return self.pos
 
-    def position_vector(self, p = []):
-        self.p = self.read_data(p)
+    def position_vector(self, p):
+        self.p = self.read_data()
         position = PoseStamped()
         position.pose.position.x = float(p[0])
         position.pose.position.y = float(p[1])
@@ -61,7 +61,7 @@ class Trajectory:
 
     def add_point(self, positions, time):
         point = JointTrajectoryPoint()
-        point.positions = self.read_data(positions)
+        point.positions = self.read_data()
         point.time_from_start = rospy.Duration(time)
 
 
@@ -118,10 +118,9 @@ class Trajectory:
                     c.append(item['value_'])
                 b.append(c)
         #point_data(b)
-            self.write_jointnames(self, a, b)
-            self.add_point(self, b)
-            self.position_vector(self, b)
-            self.positions(self, a)
+            self.write_jointnames(a, b)
+            self.add_point(b)
+            self.position_vector(b)
 
         #write_positions(b)
         #for item in range(len(data['Template']['motions_'][0]['properties_']['dynamics_'])):
@@ -130,10 +129,8 @@ class Trajectory:
             acc = data['Template']['motions_'][0]['properties_']['dynamics_']['accelerations_']
             d.append(vel)
             e.append(acc)
-            self.write_velocity(self, vel, acc)
-            self.positions(self, vel)
-            self.positions(self, acc)
-
+            self.write_velocity(vel, acc)
+            self.positions(a, b, vel, acc, )
 
 #def write_jointnames(self):
         #print(ReadData.parse_file())
