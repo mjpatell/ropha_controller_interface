@@ -9,81 +9,83 @@ from control_msgs.msg import (
 from trajectory_msgs.msg import (
     JointTrajectoryPoint,
 )
+
+import control_msgs.msg
 from geometry_msgs.msg import *
-#import control_msgs
 import roslib
 import json
 import argparse
-import copy
 
 
 class Trajectory:
+    def __init__(self):
+        self.object1 = FollowJointTrajectoryGoal()
+        self.goal = FollowJointTrajectoryActionGoal
+        self.position = PoseStamped()
+        self.point = JointTrajectoryPoint()
+        self.client = actionlib.SimpleActionClient('/arm_left/joint_trajectory_controller/follow_joint_trajectory', control_msgs.msg.FollowJointTrajectoryAction)
+
+    def create_frame(self, sequence = '', stamp_secs = 0, stamp_nsecs = 0, frame_id = ''):
+        self.object1.trajectory.header.seq = sequence
+        self.object1.trajectory.header.stamp.secs = stamp_secs
+        self.object1.trajectory.header.stamp.nsecs = stamp_nsecs
+        self.object1.trajectory.header.frame_id = frame_id
+
+        #return sequence, stamp_secs, stamp_nsecs, frame_id
+        return self.object1
+
+    def fill_trajectory(self):
+
+        [jointnames, pointposition, pointvelocity, pointacceleration, duration] = self.read_data()
+        self.object1.trajectory.joint_names = jointnames
+
+        for pose, vel, acc in [pointposition, pointvelocity, pointacceleration]:
+
+
+        self.object1.trajectory.points.positions = pointposition
+        self.object1.trajectory.points.velocities = pointvelocity
+        self.object1.trajectory.points.acceleration = pointacceleration
+        self.object1.trajectory.points.time_from_start = duration
+
+        #return jointnames, pointposition, pointvelocity, pointacceleration, duration
+        return self.object1
+
+    def trajectory_points(self, position, velocity, acceleration, time_from_start):
+
+        self.position.pose.position.x = float(position[0])
+        self.position.pose.position.y = float(position[1])
+        self.position.pose.position.z = float(position[2])
+        self.position.pose.orientation.x = float(position[3])
+        self.position.pose.orientation.y = float(position[4])
+        self.position.pose.orientation.z = float(position[5])
+        self.position.pose.orientation.w = float(position[6])
+
+
+        self.fill_trajectory()
+        return self.position
+
     def start(self):
-        self.goal.trajectory.header.stamp = rospy.Time.now()
-        self.client.send_goal(self.goal)
+        self.object1.trajectory.header.stamp = rospy.Time.now()
+        self.client.send_goal(self.object1)
 
 
-#def joint_names(joint_name):
-    #print(joint_name)
+    def goal_id(self, goal_id, goal_stamp):
+        self.goal.goal_id.id = goal_id
+        self.goal.goal_id.stamp = goal_stamp
 
-#def point_data(point_positions):
-    #print(point_positions)
+        return self.goal
 
-    def create_frame(self, sequence, stamp_secs, stamp_nsecs, frame_id):
-        self.pos = FollowJointTrajectoryGoal()
-        self.pos.trajectory.header.seq = self.sequence
-        self.pos.trajectory.header.stamp.secs = self.stamp_secs = rospy.Time.secs
-        self.pos.trajectory.header.stamp.nsecs = self.stamp_nsecs = rospy.Time.nsecs
-        self.pos.trajectory.header.frame_id = self.frame_id
+    def path_tolerance(self, path_tol):
+        self.object1.path_tolerance = path_tol
+        print(path_tol)
 
-    def positions(self, jointnames, pointposition, pointvelocity, pointacceleration, duration):
-        self.pos = FollowJointTrajectoryGoal()
-        self.pos.trajectory.joint_names = self.jointnames = self.read_data()
-        self.pos.trajectory.points.positions = self.pointposition = self.position_vector(pointposition)
-        self.pos.trajectory.points.velocities = self.pointvelocity = self.read_data()
-        self.pos.trajectory.points.acceleration = self.pointacceleration = self.read_data()
-        self.pos.trajectory.points.time_from_start = self.duration = rospy.Duration
+        return self.object1
 
-        return self.pos
+    def goal_tolerance(self, goal_tol):
+        self.object1.goal_tolerance = goal_tol
+        print(goal_tol)
 
-    def position_vector(self, p):
-        self.p = self.read_data()
-        position = PoseStamped()
-        position.pose.position.x = float(p[0])
-        position.pose.position.y = float(p[1])
-        position.pose.position.z = float(p[2])
-        position.pose.orientation.x = float(p[3])
-        position.pose.orientation.y = float(p[4])
-        position.pose.orientation.z = float(p[5])
-        position.pose.orientation.w = float(p[6])
-
-        self.positions(self, p)
-
-    def add_point(self, positions, time):
-        point = JointTrajectoryPoint()
-        point.positions = self.read_data()
-        point.time_from_start = rospy.Duration(time)
-
-
-    def follow_traj_client(pos):
-        client = actionlib.ActionClient
-        client.wait_for_server(timeout=2.0)
-        client.send_goal(pos)
-        client.wait_for_server(timeout=5.0)
-        return client.get_result()
-
-    def goal_ID(self, goal_id, goal_stamp):
-        self.goal = FollowJointTrajectoryActionGoal()
-        self.goal.goal_id.id = self.goal_id
-        self.goal.goal_id.stamp = self.goal_stamp
-
-    def path_tolerence(self, path_tol):
-        self.path_tol = FollowJointTrajectoryGoal.goal_tolerance
-        print(self.path_tol)
-
-    def goal_tolerence(self, goal_tol):
-        self.goal_tol = FollowJointTrajectoryGoal.goal_tolerance
-        print(self.goal_tol)
+        return self.object1
 
     def write_jointnames(self, joint_name, point_positions):
         with open('shyam.txt', 'w') as f:
@@ -107,43 +109,41 @@ class Trajectory:
     def read_data(self):
         with open('shyam_json_1.json') as f:
             data = json.load(f)
-            a = []; b = []
+            joint_name = []; position_values = []
             for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:        #read joint names specified in file
-                a.append(item['name_'])
-            #joint_names(a)
+                joint_name.append(item['name_'])
 
             for i in range(len(data['Template']['motions_'][0]['references_']['states_'])):
                 c = []
                 for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:
                     c.append(item['value_'])
-                b.append(c)
-        #point_data(b)
-            self.write_jointnames(a, b)
-            self.add_point(b)
-            self.position_vector(b)
+                position_values.append(c)
 
+            self.write_jointnames(joint_name, position_values)
+            self.trajectory_points(c)
         #write_positions(b)
         #for item in range(len(data['Template']['motions_'][0]['properties_']['dynamics_'])):
+
             d = []; e = []
             vel = data['Template']['motions_'][0]['properties_']['dynamics_']['velocities_']
             acc = data['Template']['motions_'][0]['properties_']['dynamics_']['accelerations_']
             d.append(vel)
             e.append(acc)
             self.write_velocity(vel, acc)
-            self.positions(a, b, vel, acc, )
+            #self.fill_trajectory(joint_name, position_values, vel, acc, None)
+        return [joint_name, position_values, vel, acc, 0.0]
 
-#def write_jointnames(self):
-        #print(ReadData.parse_file())
+if __name__ == '__main__':
+    rospy.init_node("follow_joint_trajectory_goal")
 
-#def write_positions(self):
-    #print(parse_file(self.points_data))
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--base_link', required=True, default='base_link', help='base link of the kinematic chain')
 
-    if __name__ == '__main__':
-        rospy.init_node("follow_joint_trajectory_goal")
+    args, unknown = parser.parse_known_args()
+    rospy.loginfo('Follow Joint Trajectory Motion Planning')
 
-        parser = argparse.ArgumentParser()
-        parser.add_argument('--base_link', required=True, default='base_link', help='base link of the kinematic chain')
+    trajectory = Trajectory()
 
-        args, unknown = parser.parse_known_args()
-
+    trajectory.create_frame('13', 494, 932000000, '')
+    trajectory.goal_id('/move_group-14-494.932000000', rospy.Time.secs)
 
