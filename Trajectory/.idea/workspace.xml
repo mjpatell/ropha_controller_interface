@@ -17,18 +17,18 @@
         <counts>
           <entry key="project.closed" value="1" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.3" value="6" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.open.time.3" value="7" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="7496" />
+          <entry key="py" value="8749" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="7496" />
+          <entry key="Python" value="8749" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -48,13 +48,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Trajectory.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="47" column="65" lean-forward="true" selection-start-line="47" selection-start-column="65" selection-end-line="47" selection-end-column="65" />
+            <state relative-caret-position="184">
+              <caret line="160" lean-forward="true" selection-start-line="160" selection-end-line="160" />
               <folding>
                 <element signature="e#19#31#0" expanded="true" />
-                <marker date="1539268611887" expanded="true" signature="729:735" ph="..." />
-                <marker date="1539268611887" expanded="true" signature="1183:1189" ph="..." />
-                <marker date="1539268611887" expanded="true" signature="2403:2518" ph="..." />
+                <marker date="1539688606508" expanded="true" signature="849:855" ph="..." />
+                <marker date="1539688606508" expanded="true" signature="1311:1317" ph="..." />
+                <marker date="1539688606508" expanded="true" signature="2595:2815" ph="..." />
+                <marker date="1539688606508" expanded="true" signature="2831:3000" ph="..." />
+                <marker date="1539688606508" expanded="true" signature="2960:3000" ph="..." />
+                <marker date="1539688606508" expanded="true" signature="3653:3699" ph="..." />
               </folding>
             </state>
           </provider>
@@ -144,13 +147,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.11719182" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3294979" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3294979" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39958158" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -175,13 +179,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Trajectory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="47" column="65" lean-forward="true" selection-start-line="47" selection-start-column="65" selection-end-line="47" selection-end-column="65" />
+        <state relative-caret-position="184">
+          <caret line="160" lean-forward="true" selection-start-line="160" selection-end-line="160" />
           <folding>
             <element signature="e#19#31#0" expanded="true" />
-            <marker date="1539268611887" expanded="true" signature="729:735" ph="..." />
-            <marker date="1539268611887" expanded="true" signature="1183:1189" ph="..." />
-            <marker date="1539268611887" expanded="true" signature="2403:2518" ph="..." />
+            <marker date="1539688606508" expanded="true" signature="849:855" ph="..." />
+            <marker date="1539688606508" expanded="true" signature="1311:1317" ph="..." />
+            <marker date="1539688606508" expanded="true" signature="2595:2815" ph="..." />
+            <marker date="1539688606508" expanded="true" signature="2831:3000" ph="..." />
+            <marker date="1539688606508" expanded="true" signature="2960:3000" ph="..." />
+            <marker date="1539688606508" expanded="true" signature="3653:3699" ph="..." />
           </folding>
         </state>
       </provider>

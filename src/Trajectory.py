@@ -72,7 +72,7 @@ class Trajectory:
         return self.position
     """
 
-    def add_point(self, positions, time):
+    def add_point(self, positions = '', time=0.0):
         self.point.positions = positions
         self.point.time_from_start = rospy.Duration(time)
         self.object1.trajectory.points.append(self.point)
@@ -129,7 +129,7 @@ class Trajectory:
             f.write('\n\n')
 
     def read_data(self):
-        with open('shyam_json_1') as f:
+        with open('shyam_json_1.json') as f:
             data = json.load(f)
             joint_name = []; position_values = []
             for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:        #read joint names specified in file
@@ -140,11 +140,11 @@ class Trajectory:
                 for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:
                     c.append(item['value_'])
                 position_values.append(c)
-                self.point.positions.append(position_values)
+                #self.point.positions.append(position_values)
 
             self.write_jointnames(joint_name, position_values)
             #self.trajectory_points(c)
-            self.add_point(position_values, None)
+            self.add_point(position_values, 0.0)
         #write_positions(b)
         #for item in range(len(data['Template']['motions_'][0]['properties_']['dynamics_'])):
 
@@ -157,7 +157,7 @@ class Trajectory:
             self.point.accelerations.append(acc)
             #self.fill_trajectory(joint_name, position_values, vel, acc, None)
         return [joint_name, position_values, vel, acc, 0.0]
-
+	
 
 if __name__ == '__main__':
     #parser = argparse.ArgumentParser()
@@ -178,5 +178,5 @@ if __name__ == '__main__':
     trajectory.create_frame()
     trajectory.goal_id()
     trajectory.start()
-    trajectory.wait(15)
+    trajectory.wait(2)
     print("Follow Joint Trajectory Successfully Completed...")
