@@ -35,38 +35,67 @@
 				{
 				"joints_":
 					[
+						{"name_":"arm_left_1_joint","value_":-0.1212},
+						{"name_":"arm_left_2_joint","value_":-0.2498},
+						{"name_":"arm_left_3_joint","value_":0.1626},
+						{"name_":"arm_left_4_joint","value_":0.243587},
+						{"name_":"arm_left_5_joint","value_":0.1616},
+						{"name_":"arm_left_6_joint","value_":0.1010},
+						{"name_":"arm_left_7_joint","value_":-0.1778}
+					],
+				"tfs_":[{"tfs_value_":1}]
+				},
+				{
+				"joints_":
+					[
+						{"name_":"arm_left_1_joint","value_":-0.1222},
+						{"name_":"arm_left_2_joint","value_":-0.24996},
+						{"name_":"arm_left_3_joint","value_":0.163586},
+						{"name_":"arm_left_4_joint","value_":0.243658},
+						{"name_":"arm_left_5_joint","value_":0.16358},
+						{"name_":"arm_left_6_joint","value_":0.107108},
+						{"name_":"arm_left_7_joint","value_":-0.17888}
+					],
+				"tfs_":[{"tfs_value_":2}]
+				},
+				{
+				"joints_":
+					[
+						{"name_":"arm_left_1_joint","value_":-0.38620},
+						{"name_":"arm_left_2_joint","value_":-0.877963},
+						{"name_":"arm_left_3_joint","value_":0.7859626},
+						{"name_":"arm_left_4_joint","value_":0.8716},
+						{"name_":"arm_left_5_joint","value_":0.78597},
+						{"name_":"arm_left_6_joint","value_":0.5637},
+						{"name_":"arm_left_7_joint","value_":-0.9135}
+					],
+				"tfs_":[{"tfs_value_":3}]
+				},
+				{
+				"joints_":
+					[
+						{"name_":"arm_left_1_joint","value_":-0.75580},
+						{"name_":"arm_left_2_joint","value_":-1.6179},
+						{"name_":"arm_left_3_joint","value_":1.00720},
+						{"name_":"arm_left_4_joint","value_":1.6179},
+						{"name_":"arm_left_5_joint","value_":1.04719},
+						{"name_":"arm_left_6_joint","value_":0.60810},
+						{"name_":"arm_left_7_joint","value_":-1.025}
+					],
+				"tfs_":[{"tfs_value_":4}]
+				},
+				{
+				"joints_":
+					[
 						{"name_":"arm_left_1_joint","value_":-0.9599},
-						{"name_":"arm_left_2_joint","value_":-1.6581},
-						{"name_":"arm_left_3_joint","value_":1.0472},
-						{"name_":"arm_left_4_joint","value_":1.6581},
-						{"name_":"arm_left_5_joint","value_":1.0472},
+						{"name_":"arm_left_2_joint","value_":-1.6580},
+						{"name_":"arm_left_3_joint","value_":1.04720},
+						{"name_":"arm_left_4_joint","value_":1.6580},
+						{"name_":"arm_left_5_joint","value_":1.04719},
 						{"name_":"arm_left_6_joint","value_":0.6981},
-						{"name_":"arm_left_7_joint","value_":-1.0700}
-					]
-				},
-				{
-				"joints_":
-					[
-						{"name_":"arm_left_1_joint","value_":0.9599},
-						{"name_":"arm_left_2_joint","value_":1.5708},
-						{"name_":"arm_left_3_joint","value_":-0.1200},
-						{"name_":"arm_left_4_joint","value_":1.0000},
-						{"name_":"arm_left_5_joint","value_":1.3800},
-						{"name_":"arm_left_6_joint","value_":0.7500},
-						{"name_":"arm_left_7_joint","value_":-1.3600}
-					]
-				},
-				{
-				"joints_":
-					[
-						{"name_":"arm_left_1_joint","value_":-1.57},
-						{"name_":"arm_left_2_joint","value_":-1.45},
-						{"name_":"arm_left_3_joint","value_":1.57},
-						{"name_":"arm_left_4_joint","value_":2.55},
-						{"name_":"arm_left_5_joint","value_":0.00},
-						{"name_":"arm_left_6_joint","value_":-2.4},
-						{"name_":"arm_left_7_joint","value_":0.00}
-					]
+						{"name_":"arm_left_7_joint","value_":-1.0699}
+					],
+				"tfs_":[{"tfs_value_":5}]
 				}
 			]
 			}

@@ -27,9 +27,11 @@ class Trajectory:
         self.client = actionlib.SimpleActionClient('/arm_left/joint_trajectory_controller/follow_joint_trajectory', control_msgs.msg.FollowJointTrajectoryAction)
         self.client.wait_for_server(rospy.Duration(5))
 
+    """
     def create_frame(self, stamp_secs = 0):
         self.object1.trajectory.header.stamp_secs = rospy.Time(0)
         return self.object1
+    """
 
     def add_point(self, positions, velocity, acceleration, time):       #adds the trajectory points
         self.point.positions = positions
@@ -40,8 +42,7 @@ class Trajectory:
         return self.point, self.object1, positions, time
 
     def start(self):
-        self.object1.trajectory.header.stamp = rospy.Time(0)
-        print("position data", self.object1.trajectory.points[0])
+        self.object1.trajectory.header.stamp = rospy.Time.now()
         self.client.send_goal(self.object1)
 
     def stop(self):
@@ -73,15 +74,19 @@ class Trajectory:
         print("Read Data from File")
         with open('/home/myp-stud1/ropha_ws/src/ropha_controller_interface/src/shyam_json_1.json') as f:
             data = json.load(f)
-            joint_name = []; position_values = []
+            joint_name = []; position_values = []; tfs = []
             for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:        #read joint names specified in file
                 self.object1.trajectory.joint_names.append(str(item['name_']))      #adding the joint names to Trajectory message
 
-            for i in range(len(data['Template']['motions_'][0]['references_']['states_'])):         #read the position trajectory from the file
+            for i in range(len(data['Template']['motions_'][0]['references_']['states_'])):  #read the position trajectory from the file
                 c = []
                 for item in data['Template']['motions_'][0]['references_']['states_'][i]['joints_']:
                     c.append(item['value_'])
                 position_values.append(c)
+
+                for item in data['Template']['motions_'][0]['references_']['states_'][i]['tfs_']:
+                    tfs.append(item['tfs_value_'])
+                    print(tfs)
                 #self.point.positions.append(position_values)        #adding the trajectory point data to the trajectory message
 
             d = []; e = []
@@ -93,12 +98,13 @@ class Trajectory:
             self.point.velocities.append(vel)           #adding the velocity value to the trajectory message
             self.point.accelerations.append(acc)        #adding the acceleration value to the trajectory message
             print(position_values)
+            print(tfs)
             print(joint_name)
             print(vel)
             print(acc)
             print("Read Data Finish")
 
-            return [joint_name, position_values, vel, acc, 0.0]         #returns all the above defined values for the future usage
+            return [joint_name, position_values, vel, acc, tfs]         #returns all the above defined values for the future usage
 
 
 if __name__ == '__main__':
@@ -115,15 +121,17 @@ if __name__ == '__main__':
     print("Trajectory defined")
     trajectory.__init__()
     print("Parameters defined")
-    [_,pos,vel,acc,_] = trajectory.read_data()
+    [_,pos,vel,acc, tfs] = trajectory.read_data()
     print("Data Reading finished")
-    print("print first position", pos)
-    #print("... print second data ...", pos[1])
-    trajectory.add_point(pos[0], vel, acc, 1.0)
-    #strajectory.add_point(pos[1], vel, acc, 10.0)
-    #trajectory.add_point(pos[1], vel, acc, 10.0)
+    for i in range(len(pos)):
+        trajectory.add_point(pos[i], vel, acc, tfs[i])
+        print('Position', i, 'is:', pos[i])
+        print('Time:', tfs[i])
+        rospy.sleep(1.0)
+    #trajectory.add_point(pos[0], vel, acc, 0.0)
+    #trajectory.add_point(pos[3], vel, acc, 5.0)
     trajectory.start()
     print("Goal sent")
-    trajectory.wait(15)
+    trajectory.wait(5)
     print("Follow Joint Trajectory Successfully Completed...")
     rospy.spin()
