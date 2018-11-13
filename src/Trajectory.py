@@ -34,6 +34,8 @@ class Trajectory:
         self.goal = FollowJointTrajectoryGoal()
         self.client = actionlib.SimpleActionClient('/arm_left/joint_trajectory_controller/follow_joint_trajectory', control_msgs.msg.FollowJointTrajectoryAction)
         self.client.wait_for_server(rospy.Duration(5))
+        self.rospack = rospkg.RosPack()
+        self.file_path = self.rospack.get_path("ropha_controller_interface")
 
     def add_point(self, positions, velocity, acceleration, time):
         """
@@ -137,8 +139,7 @@ class Trajectory:
     def read_data(self):
     #reads all the data from a given file to parse it
         print("Read Data from File")
-        rospack = rospkg.RosPack()
-        with open(os.path.join(rospack.get_path("ropha_controller_interface"), "src", "Trajectory_Data.json")) as f:
+        with open(os.path.join(self.rospack.get_path("ropha_controller_interface"), "src", "Trajectory_Data.json")) as f:
             data = json.load(f)
             joint_name = []; position_values = []
             for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:
@@ -154,19 +155,12 @@ class Trajectory:
                     c.append(item['value_'])
                 position_values.append(c)
 
-            d = []; e = []
             vel = data['Template']['motions_'][0]['properties_']['dynamics_']['velocities_']
             #reading the given velocity value from the file
             acc = data['Template']['motions_'][0]['properties_']['dynamics_']['accelerations_']
             #reading the acceleration value from the file
-            d.append(vel)
-            e.append(acc)
-            self.write_data(joint_name, position_values, vel, acc)
+            #self.write_data(joint_name, position_values, vel, acc)
             #passing all the values to write them in a text file for a simple understanding
-            #print(position_values)
-            #print(joint_name)
-            #print(vel)
-            #print(acc)
             print("Read Data Finish")
 
             return [joint_name, position_values, vel, acc]
@@ -210,8 +204,7 @@ if __name__ == '__main__':
     #send the goal to the client for the execution
     print("Goal sent")
     print(trajectory.goal)
-    #print(trajectory.goal.trajectory.points)
-    with open('Trajectory_Data_written.txt', 'w') as f:
+    with open(trajectory.file_path+'/Trajectory_Goal_Written.txt', 'w') as f:
         f.write(str(trajectory.goal))
     #trajectory.wait()
     print("Follow Joint Trajectory Successfully Completed...")
