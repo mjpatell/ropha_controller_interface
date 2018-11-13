@@ -131,10 +131,10 @@ if __name__ == '__main__':
     args, unknown = parser.parse_known_args()
     args = parser.parse_args()
 
-    print("Initializing the Node")
+    rospy.loginfo("Initializing the Node")
     rospy.init_node("follow_joint_trajectory_goal")
     #defining the Node
-    print("Running, Ctrl+C to quit")
+    rospy.loginfo("Running, Ctrl+C to quit")
     rospy.loginfo('Follow Joint Trajectory Motion Planning')
     trajectory = Trajectory(args.input_arm_name)
     #defining the object for the class to use the functions
@@ -142,6 +142,7 @@ if __name__ == '__main__':
     rospy.loginfo("Parameters defined")
     [_, pos, vel, acc] = trajectory.read_data()
     rospy.loginfo("Data Reading finished")
+
     traj_time = 0
     timeout = 3.0
 
