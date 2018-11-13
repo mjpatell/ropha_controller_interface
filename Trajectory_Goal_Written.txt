@@ -2,8 +2,8 @@ trajectory:
   header: 
     seq: 0
     stamp: 
-      secs: 3634
-      nsecs: 764000000
+      secs: 3838
+      nsecs: 184000000
     frame_id: ''
   joint_names: [arm_left_1_joint, arm_left_2_joint, arm_left_3_joint, arm_left_4_joint, arm_left_5_joint,
   arm_left_6_joint, arm_left_7_joint]
@@ -15,7 +15,7 @@ trajectory:
       effort: []
       time_from_start: 
         secs: 3
-        nsecs: 760843009
+        nsecs: 760844287
     - 
       positions: [-0.1222, -0.24996, 0.163586, 0.243658, 0.16358, 0.107108, -0.17888]
       velocities: [1, 1, 1, 1, 1, 1, 1]
@@ -23,7 +23,7 @@ trajectory:
       effort: []
       time_from_start: 
         secs: 4
-        nsecs: 160843009
+        nsecs: 160844287
     - 
       positions: [-0.3862, -0.877963, 0.7859626, 0.8716, 0.78597, 0.5637, -0.9135]
       velocities: [1, 1, 1, 1, 1, 1, 1]
@@ -31,7 +31,7 @@ trajectory:
       effort: []
       time_from_start: 
         secs: 6
-        nsecs: 871230435
+        nsecs: 871231713
     - 
       positions: [-0.7558, -1.6179, 1.0072, 1.6179, 1.04719, 0.6081, -1.025]
       velocities: [1, 1, 1, 1, 1, 1, 1]
@@ -39,7 +39,7 @@ trajectory:
       effort: []
       time_from_start: 
         secs: 9
-        nsecs: 603079626
+        nsecs: 603080904
     - 
       positions: [-0.9599, -1.658, 1.0472, 1.658, 1.04719, 0.6981, -1.0699]
       velocities: [1, 1, 1, 1, 1, 1, 1]
@@ -47,7 +47,7 @@ trajectory:
       effort: []
       time_from_start: 
         secs: 11
-        nsecs:  31715339
+        nsecs:  31716617
 path_tolerance: []
 goal_tolerance: []
 goal_time_tolerance: 

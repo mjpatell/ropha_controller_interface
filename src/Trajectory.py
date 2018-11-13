@@ -79,9 +79,6 @@ class Trajectory:
         """
         self.client.wait_for_result(timeout=rospy.Duration(timeout))
 
-    def result(self):
-        return self.client.get_result()
-
     def calculate_point_time(self, start_pos, end_pos, default_vel, default_acc):
         try:
             d_max = max(list(abs(numpy.array(start_pos) - numpy.array(end_pos))))
@@ -107,8 +104,6 @@ class Trajectory:
             print ("Likely due to mimic joints. Using default point_time: 3.0 [sec]")
             point_time = 3.0  # use default point_time
         return point_time
-
-    #def message_write_to_json(self, message):
 
     """
     def write_data(self, joint_name, point_positions, velocity, acceleration):
