@@ -23,26 +23,18 @@ import thread
 import sys
 import time
 import os
+import yaml
 import rospkg
 
-class Trajectory:
-    def __init__(self):
-        """
-        Initializing the Parameters and the Client definition to send to the controller
-        """
 
+
+class Trajectory:
+    def __init__(self):                 #initializing all the parameters
         self.goal = FollowJointTrajectoryGoal()
         self.client = actionlib.SimpleActionClient('/arm_left/joint_trajectory_controller/follow_joint_trajectory', control_msgs.msg.FollowJointTrajectoryAction)
         self.client.wait_for_server(rospy.Duration(5))
 
-    def add_point(self, positions, velocity, acceleration, time):
-        """
-        :param positions: adds all the point positions available in the given file
-        :param velocity: adds the given velocity at which the Robotarm should move
-        :param acceleration: adds the given acceleration value at which the Robotarm should move
-        :param time: Time, which the Robotarm take to reach to the next point (Time_from_start)
-
-        """
+    def add_point(self, positions, velocity, acceleration, time):       #adds the trajectory points
         point = JointTrajectoryPoint()
         point.positions = positions
         point.velocities = velocity
@@ -50,35 +42,25 @@ class Trajectory:
         point.time_from_start = rospy.Duration(time)
         self.goal.trajectory.points.append(point)
         #print(self.goal.trajectory.points)
+        #return self.point, self.goal, positions, time
 
     def start(self):
-        """
-        First step of the Trajectory Goal, which sends all the details of Goal
-        (Trajectory Points, Velocity, Acceleration) to the Controller
-
-        """
         self.goal.trajectory.header.stamp = rospy.Time.now()
         self.client.send_goal(self.goal)
         self.client.wait_for_result()
 
     def stop(self):
-        """
-        can be used to stop the Trajectory in case of some Collision, Emergency or invalid point details
-
-        """
         self.client.cancel_goal()
 
     def wait(self, timeout):
-        """
-        waits for the controller to respond, if it has got all the required details and if it has started executing the
-        result in a given Timeout
-        :param timeout: Time, within which the Controller should respond and give the result, if not, it should cancel
-        the Goal
-        """
         self.client.wait_for_result(timeout=rospy.Duration(timeout))
 
     def result(self):
         return self.client.get_result()
+
+    def msg2json(self, msg):
+        y = yaml.load(str(msg))
+        return json.dumps(y, indent=4)
 
     def calculate_point_time(self, start_pos, end_pos, default_vel, default_acc):
         try:
@@ -106,18 +88,8 @@ class Trajectory:
             point_time = 3.0  # use default point_time
         return point_time
 
-    #def message_write_to_json(self, message):
-
-    """
-    def write_data(self, joint_name, point_positions, velocity, acceleration):
-        
-        Writes only the necessary details to a file, so that it can be read easily than the original JSON File
-        :param joint_name: All the Joint Names of a Robot Arm
-        :param point_positions: all the given Point Positions
-        :param velocity: Velocity of the joints at which the joints and ultimately the Robot Arm should move
-        :param acceleration: Acceleration of the joints at which the joints and ultimately the Robot Arm should move
-        
-        with open('shyam.json', 'w') as f:
+    def write_data(self, joint_name, point_positions, velocity, acceleration):              #writes all the read data in a file
+        with open('shyam.txt', 'w') as f:
             json.dump("Joint_Names:", f)
             json.dump(joint_name, f)
             f.write('\n \n')
@@ -132,45 +104,36 @@ class Trajectory:
             json.dump(acceleration, f)
             f.write('\n\n')
 
-    """
-
-    def read_data(self):
-    #reads all the data from a given file to parse it
+    def read_data(self):                #reads all the data from a given file to parse it
         print("Read Data from File")
-        rospack = rospkg.RosPack()
-        with open(os.path.join(rospack.get_path("ropha_controller_interface"), "src", "Trajectory_Data.json")) as f:
+        self.rospack = RosPack()
+        with open(join(self.rospack.get_path('ropha_ws'), 'config', 'shyam_json_1.json')) as f:
             data = json.load(f)
             joint_name = []; position_values = []
-            for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:
-                #read joint names specified in file
-                self.goal.trajectory.joint_names.append(str(item['name_']))
-                #adding the joint names to Trajectory message
+            for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:        #read joint names specified in file
+                self.goal.trajectory.joint_names.append(str(item['name_']))      #adding the joint names to Trajectory message
                 joint_name.append(item['name_'])
+            print(joint_name)
 
-            for i in range(len(data['Template']['motions_'][0]['references_']['states_'])):
-                #read the position trajectory from the file
+            for i in range(len(data['Template']['motions_'][0]['references_']['states_'])):  #read the position trajectory from the file
                 c = []
                 for item in data['Template']['motions_'][0]['references_']['states_'][i]['joints_']:
                     c.append(item['value_'])
                 position_values.append(c)
 
             d = []; e = []
-            vel = data['Template']['motions_'][0]['properties_']['dynamics_']['velocities_']
-            #reading the given velocity value from the file
-            acc = data['Template']['motions_'][0]['properties_']['dynamics_']['accelerations_']
-            #reading the acceleration value from the file
+            vel = data['Template']['motions_'][0]['properties_']['dynamics_']['velocities_']        #reading the given velocity value from the file
+            acc = data['Template']['motions_'][0]['properties_']['dynamics_']['accelerations_']     #reading the acceleration value from the file
             d.append(vel)
             e.append(acc)
-            self.write_data(joint_name, position_values, vel, acc)
-            #passing all the values to write them in a text file for a simple understanding
-            #print(position_values)
-            #print(joint_name)
-            #print(vel)
-            #print(acc)
+            self.write_data(joint_name, position_values, vel, acc)          #passing all the values to write them in a text file for a simple understanding
+            print(position_values)
+            print(joint_name)
+            print(vel)
+            print(acc)
             print("Read Data Finish")
 
-            return [joint_name, position_values, vel, acc]
-            #returns all the above defined values for the future usage
+            return [joint_name, position_values, vel, acc]         #returns all the above defined values for the future usage
 
 
 if __name__ == '__main__':
@@ -180,12 +143,10 @@ if __name__ == '__main__':
     #args, unknown = parser.parse_known_args()
 
     print("Initializing the Node")
-    rospy.init_node("follow_joint_trajectory_goal")
-    #defining the Node
+    rospy.init_node("follow_joint_trajectory_goal")         #defining the Node
     print("Running, Ctrl+C to quit")
     rospy.loginfo('Follow Joint Trajectory Motion Planning')
-    trajectory = Trajectory()
-    #defining the object for the class to use the functions
+    trajectory = Trajectory()                               #defining the object for the class to use the functions
     print("Trajectory defined")
     trajectory.__init__()
     print("Parameters defined")
@@ -201,18 +162,13 @@ if __name__ == '__main__':
         rospy.logwarn("no joint states received from %s within timeout of %ssec. using default point time of 8sec.",
                       "arm", str(timeout))
     for i in range(len(pos)):
-        point_time = trajectory.calculate_point_time(current_pose, pos[i], vel[i], acc[i])
-        #pushing the point data for all the trajectory points
+        point_time = trajectory.calculate_point_time(current_pose, pos[i], vel[i], acc[i])       #pushing the point data for all the trajectory points
         current_pose = pos[i]
         trajectory.add_point(pos[i], vel, acc, (point_time+traj_time))
         traj_time += point_time
-    trajectory.start()
-    #send the goal to the client for the execution
+    trajectory.start()          #send the goal to the client for the execution
     print("Goal sent")
-    print(trajectory.goal)
-    #print(trajectory.goal.trajectory.points)
-    with open('Trajectory_Data_written.txt', 'w') as f:
-        f.write(str(trajectory.goal))
+    print(trajectory.goal.trajectory.points)
     #trajectory.wait()
     print("Follow Joint Trajectory Successfully Completed...")
     rospy.spin()
