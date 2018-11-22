@@ -1,0 +1,55 @@
+{
+	"Template":
+	{
+	"id_":"MoveToState",
+	"name_":"MoveToState",
+	"type_":"MoveToState",
+	"version_":1,
+	"motions_": 
+	[
+		{
+		"name_":"",
+		"group_":"",
+		"controller_":{},
+		"properties_":
+			{
+			"generator_":{},
+			"approximation_":
+				{
+				"type_":0,
+				"radius1_":0.0,
+				"radius2_":0.0
+			},
+			"dynamics_":
+				{
+				"velocities_":[0.1,0.1,0.1,0.1,0.1,0.1,0.1],
+				"accelerations_":[0.01,0.01,0.01,0.01,0.01,0.01,0.01]
+				}
+			},
+		"points_":[],
+		"references_":
+			{
+			"poses_":[],
+			"states_":
+			[
+				
+				{
+				"joints_":
+					[
+						{"name_":"arm_left_1_joint","value_":-0.9599},
+						{"name_":"arm_left_2_joint","value_":-1.6581},
+						{"name_":"arm_left_3_joint","value_":1.0472},
+						{"name_":"arm_left_4_joint","value_":1.6581},
+						{"name_":"arm_left_5_joint","value_":1.0472},
+						{"name_":"arm_left_6_joint","value_":0.6981},
+						{"name_":"arm_left_7_joint","value_":-1.0700}
+					]
+				}
+				
+			]
+			}
+		}
+	],
+	"subPrograms_":[]
+	}
+}

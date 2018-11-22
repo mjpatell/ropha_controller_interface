@@ -24,6 +24,8 @@ import sys
 import time
 import os
 import rospkg
+import datetime
+
 
 class Trajectory:
     def __init__(self, arm_name):
@@ -100,14 +102,19 @@ class Trajectory:
     def read_data(self):
     #reads all the data from a given file to parse it
         rospack = rospkg.RosPack()
-        with open(os.path.join(rospack.get_path("ropha_controller_interface"), "src", "Trajectory_Data.json")) as f:
+        with open(os.path.join(rospack.get_path("ropha_controller_interface"), "src", "Trajectory_Data_Left_arm.json")) as f:
             data = json.load(f)
-            joint_name = []; position_values = []
-            for item in data['Template']['motions_'][0]['references_']['states_'][0]['joints_']:
+            joint_names = []; position_values = []
+            for item1 in range(len(data['Template']['motions_'][0]['references_']['states_'])):
+                joint_name_individual = []
+                for item2 in data['Template']['motions_'][0]['references_']['states_'][item1]['joints_']:
+                    joint_name_individual.append(item2['name_'])
+                joint_names.append(joint_name_individual)
                 #read joint names specified in file
-                self.goal.trajectory.joint_names.append(str(item['name_']))
+                #self.goal.trajectory.joint_names.append(str(item['name_']))
                 #adding the joint names to Trajectory message
-                joint_name.append(item['name_'])
+                #joint_name.append(item['name_'])
+
 
             for i in range(len(data['Template']['motions_'][0]['references_']['states_'])):
                 #read the position trajectory from the file
@@ -121,7 +128,7 @@ class Trajectory:
             acc = data['Template']['motions_'][0]['properties_']['dynamics_']['accelerations_']
             #reading the acceleration value from the file
 
-            return [joint_name, position_values, vel, acc]
+            return [joint_names, position_values, vel, acc]
             #returns all the above defined values for the future usage
 
 
@@ -140,14 +147,14 @@ if __name__ == '__main__':
     #defining the object for the class to use the functions
     rospy.loginfo("Trajectory defined")
     rospy.loginfo("Parameters defined")
-    [_, pos, vel, acc] = trajectory.read_data()
+    [joint, pos, vel, acc] = trajectory.read_data()
     rospy.loginfo("Data Reading finished")
 
     traj_time = 0
     timeout = 3.0
 
     try:
-        current_pose = rospy.wait_for_message("/" + "arm_left" + "/joint_states", JointState, timeout=timeout).position
+        current_pose = rospy.wait_for_message("/" + args.input_arm_name + "/joint_states", JointState, timeout=timeout).position
         # print ("Current pose: ", current_pose)
     except rospy.ROSException as e:
         rospy.logwarn("no joint states received from %s within timeout of %ssec. using default point time of 8sec.",
@@ -158,6 +165,7 @@ if __name__ == '__main__':
         #pushing the point data for all the trajectory points
         current_pose = pos[i]
         trajectory.add_point(pos[i], vel, acc, (point_time+traj_time))
+        trajectory.goal.trajectory.joint_names = joint[i]
         traj_time += point_time
 
     trajectory.start()
@@ -167,8 +175,22 @@ if __name__ == '__main__':
 
     rospack = rospkg.RosPack()
     file_path = rospack.get_path("ropha_controller_interface")
-    with open(file_path+'/Trajectory_Goal_Written.txt', 'w') as f:
-        f.write(str(trajectory.goal))
+    time=datetime.datetime.now()
+
+    json_data = {}
+    #json_data['Tamplate'] = 'Joint_Names', 'Positions', 'Velocity', 'Time_from_Start', 'Effort', "Joint_Positions"
+    json_data['Joint_Names'] = []
+    for i in range(len(trajectory.goal.trajectory.joint_names)):
+        name = trajectory.goal.trajectory.joint_names[i]
+        json_data['Joint_Names'].append(name)
+    json_data['Points'] = []
+    for i in range(len(trajectory.goal.trajectory.points)):
+        point = str(trajectory.goal.trajectory.points[i])
+        json_data['Points'].append(point)
+    #for i in range(len(trajectory.goal.trajectory.joint_names)):
+    #    joint_data.append(trajectory.goal.trajectory.joint_names(i))
+    #    json_data['Tamplate']['Joint_Names'] = joint_data
+    with open(file_path+'/Trajectory_Goal_Written'+str(time)+'.json', 'w') as f:
+        json.dump(json_data, f)
 
     rospy.loginfo('Follow Joint Trajectory Successfully Completed...')
-    rospy.spin()
