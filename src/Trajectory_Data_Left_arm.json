@@ -22,7 +22,7 @@
 			},
 			"dynamics_":
 				{
-				"velocities_":[1,1,1,1,1,1,1],
+				"velocities_":[0.3,0.3,0.3,0.3,0.3,0.3,0.3],
 				"accelerations_":[0.1,0.1,0.1,0.1,0.1,0.1,0.1]
 				}
 			},
@@ -35,61 +35,110 @@
 				{
 				"joints_":
 					[
-						{"name_":"arm_left_1_joint","value_":-0.1212},
-						{"name_":"arm_left_2_joint","value_":-0.2498},
-						{"name_":"arm_left_3_joint","value_":0.1626},
-						{"name_":"arm_left_4_joint","value_":0.243587},
-						{"name_":"arm_left_5_joint","value_":0.1616},
-						{"name_":"arm_left_6_joint","value_":0.1010},
-						{"name_":"arm_left_7_joint","value_":-0.1778}
+						{"value_":0.0000,"name_":"arm_left_1_joint"},
+						{"value_":0.0000,"name_":"arm_left_2_joint"},
+						{"value_":0.0000,"name_":"arm_left_3_joint"},
+						{"value_":0.0000,"name_":"arm_left_4_joint"},
+						{"value_":0.0000,"name_":"arm_left_5_joint"},
+						{"value_":0.0000,"name_":"arm_left_6_joint"},
+						{"value_":0.0000,"name_":"arm_left_7_joint"}
+					]
+				},				
+				
+				{
+				"joints_":
+					[
+						{"value_":1.0583577100326252,"name_":"arm_left_1_joint"},
+						{"value_":0.9771012887121512,"name_":"arm_left_2_joint"},
+						{"value_":2.1931056888982387,"name_":"arm_left_3_joint"},
+						{"value_":-0.9886223816374908,"name_":"arm_left_4_joint"},
+						{"value_":2.3500453461717187,"name_":"arm_left_5_joint"},
+						{"value_":0.2910915977012206,"name_":"arm_left_6_joint"},
+						{"value_":-3.0973038766228857,"name_":"arm_left_7_joint"}
 					]
 				},
 				{
 				"joints_":
 					[
-						{"name_":"arm_left_1_joint","value_":-0.1222},
-						{"name_":"arm_left_2_joint","value_":-0.24996},
-						{"name_":"arm_left_3_joint","value_":0.163586},
-						{"name_":"arm_left_4_joint","value_":0.243658},
-						{"name_":"arm_left_5_joint","value_":0.16358},
-						{"name_":"arm_left_6_joint","value_":0.107108},
-						{"name_":"arm_left_7_joint","value_":-0.17888}
+						{"value_":1.0583613143810716,"name_":"arm_left_1_joint"},
+						{"value_":0.9771026245856026,"name_":"arm_left_2_joint"},
+						{"value_":2.1930821388217538,"name_":"arm_left_3_joint"},
+						{"value_":-0.9886496648971879,"name_":"arm_left_4_joint"},
+						{"value_":2.350050649584424,"name_":"arm_left_5_joint"},
+						{"value_":0.29105976580689527,"name_":"arm_left_6_joint"},
+						{"value_":-3.097302345959996,"name_":"arm_left_7_joint"}
 					]
 				},
 				{
 				"joints_":
 					[
-						{"name_":"arm_left_1_joint","value_":-0.38620},
-						{"name_":"arm_left_2_joint","value_":-0.877963},
-						{"name_":"arm_left_3_joint","value_":0.7859626},
-						{"name_":"arm_left_4_joint","value_":0.8716},
-						{"name_":"arm_left_5_joint","value_":0.78597},
-						{"name_":"arm_left_6_joint","value_":0.5637},
-						{"name_":"arm_left_7_joint","value_":-0.9135}
+						{"value_":1.05837212742641,"name_":"arm_left_1_joint"},
+						{"value_":0.9771066322059572,"name_":"arm_left_2_joint"},
+						{"value_":2.193011488592297,"name_":"arm_left_3_joint"},
+						{"value_":-0.988731514676279,"name_":"arm_left_4_joint"},
+						{"value_":2.3500665598225405,"name_":"arm_left_5_joint"},
+						{"value_":0.2909642701239193,"name_":"arm_left_6_joint"},
+						{"value_":-3.0972977539713288,"name_":"arm_left_7_joint"}
 					]
 				},
 				{
 				"joints_":
 					[
-						{"name_":"arm_left_1_joint","value_":-0.75580},
-						{"name_":"arm_left_2_joint","value_":-1.6179},
-						{"name_":"arm_left_3_joint","value_":1.00720},
-						{"name_":"arm_left_4_joint","value_":1.6179},
-						{"name_":"arm_left_5_joint","value_":1.04719},
-						{"name_":"arm_left_6_joint","value_":0.60810},
-						{"name_":"arm_left_7_joint","value_":-1.025}
+						{"value_":1.0583901491686414,"name_":"arm_left_1_joint"},
+						{"value_":0.9771133115732148,"name_":"arm_left_2_joint"},
+						{"value_":2.192893738209871,"name_":"arm_left_3_joint"},
+						{"value_":-0.9888679309747642,"name_":"arm_left_4_joint"},
+						{"value_":2.350093076886068,"name_":"arm_left_5_joint"},
+						{"value_":0.2908051106522927,"name_":"arm_left_6_joint"},
+						{"value_":-3.0972901006568835,"name_":"arm_left_7_joint"}
 					]
 				},
 				{
 				"joints_":
 					[
-						{"name_":"arm_left_1_joint","value_":-0.9599},
-						{"name_":"arm_left_2_joint","value_":-1.6580},
-						{"name_":"arm_left_3_joint","value_":1.04720},
-						{"name_":"arm_left_4_joint","value_":1.6580},
-						{"name_":"arm_left_5_joint","value_":1.04719},
-						{"name_":"arm_left_6_joint","value_":0.6981},
-						{"name_":"arm_left_7_joint","value_":-1.0699}
+						{"value_":1.0583613143810716,"name_":"arm_left_1_joint"},
+						{"value_":0.9771026245856026,"name_":"arm_left_2_joint"},
+						{"value_":2.1930821388217538,"name_":"arm_left_3_joint"},
+						{"value_":-0.9886496648971879,"name_":"arm_left_4_joint"},
+						{"value_":2.350050649584424,"name_":"arm_left_5_joint"},
+						{"value_":0.29105976580689527,"name_":"arm_left_6_joint"},
+						{"value_":-3.097302345959996,"name_":"arm_left_7_joint"}
+					]
+				},
+				{
+				"joints_":
+					[
+						{"value_":1.060433814737656,"name_":"arm_left_1_joint"},
+						{"value_":0.9778707518202148,"name_":"arm_left_2_joint"},
+						{"value_":2.1795408448427198,"name_":"arm_left_3_joint"},
+						{"value_":-1.004337539222988,"name_":"arm_left_4_joint"},
+						{"value_":2.3531001118900529,"name_":"arm_left_5_joint"},
+						{"value_":0.27275642656983398,"name_":"arm_left_6_joint"},
+						{"value_":-3.096422214798735,"name_":"arm_left_7_joint"}
+					]
+				},
+				{
+				"joints_":
+					[
+						{"value_":1.0681038682312425,"name_":"arm_left_1_joint"},
+						{"value_":0.9807134905250052,"name_":"arm_left_2_joint"},
+						{"value_":2.1294262820820535,"name_":"arm_left_3_joint"},
+						{"value_":-1.0623963158582979,"name_":"arm_left_4_joint"},
+						{"value_":2.364385774127233,"name_":"arm_left_5_joint"},
+						{"value_":0.20501815544554448,"name_":"arm_left_6_joint"},
+						{"value_":-3.0931649641706224,"name_":"arm_left_7_joint"}
+					]
+				},
+				{
+				"joints_":
+					[
+						{"value_":1.0765272289705657,"name_":"arm_left_1_joint"},
+						{"value_":0.983835426195742,"name_":"arm_left_2_joint"},
+						{"value_":2.0743897636562655,"name_":"arm_left_3_joint"},
+						{"value_":-1.1261572818140029,"name_":"arm_left_4_joint"},
+						{"value_":2.3767798472957475,"name_":"arm_left_5_joint"},
+						{"value_":0.13062703235688767,"name_":"arm_left_6_joint"},
+						{"value_":-3.0895878056694565,"name_":"arm_left_7_joint"}
 					]
 				}
 			]
