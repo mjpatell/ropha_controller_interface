@@ -12,8 +12,6 @@ from geometry_msgs.msg import *
 import roslib
 import json
 import argparse
-import numpy
-import math
 from sensor_msgs.msg import JointState
 import threading
 import thread
