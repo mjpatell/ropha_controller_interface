@@ -78,13 +78,18 @@ class Trajectory:
 
 
     def goal_defination(self):
+        timeout = 10.0
 
         for i in range(len(pos)):
 
             self.add_point(pos[i], vel[i], acc[i], time[i])
+            #print(pos[i])
+            #print(vel[i])
+            #print(acc[i])
+            #print(time[i])
+            #print(joint)
             print(i)
-
-            self.start()
+        self.start()
 
         #time_before_result = self.client.wait_for_result(rospy.Duration(10))
 
@@ -93,7 +98,6 @@ class Trajectory:
 
         self.clear_goal()
         self.client.wait_for_result()
-
 
     def read_data(self):
         joint_names = []; position_values = []; time = []; velocity = []; acceleration = []
@@ -137,19 +141,13 @@ if __name__ == '__main__':
     rospy.loginfo("Trajectory defined")
     rospy.loginfo("Parameters defined")
 
-    #with open(os.path.join("home", "myp-stud", "predictive_ws","src", "ropha_controller_interface", "src", "trajectory.json")) as f:
-    #    data = json.load(f)
-    with open('/home/myp-stud/predictive_ws/src/ropha_controller_interface/src/trajectory.json') as f:
+    with open(os.path.join(rospack.get_path("ropha_controller_interface"), "src", "trajectory.json")) as f:
         data = json.load(f)
         [joint, pos, time, vel, acc] = trajectory.read_data()
         #print(joint)
         trajectory.goal.trajectory.joint_names = joint
         #print(trajectory.goal.trajectory.joint_names)
         trajectory.goal_defination()
-
-    timeout=3.0
-    current_pose_arm = rospy.wait_for_message("/" + args.input_arm_name + "/joint_states", JointState, timeout=timeout).position
-    print ("Current pose: ", current_pose_arm)
 
     rospy.loginfo("Goal sent")
     rospy.loginfo('Follow Joint Trajectory Successfully Completed...')
