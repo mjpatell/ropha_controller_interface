@@ -83,7 +83,6 @@ class Trajectory:
         for i in range(len(pos)):
 
             self.add_point(pos[i], vel[i], acc[i], time[i])
-            print(i)
 
         self.start()
 
@@ -139,10 +138,11 @@ if __name__ == '__main__':
     rospy.loginfo("Trajectory defined")
     rospy.loginfo("Parameters defined")
 
-    #with open(os.path.join("home", "myp-stud", "predictive_ws","src", "ropha_controller_interface", "src", "trajectory.json")) as f:
-    #    data = json.load(f)
-    with open('/home/myp-stud/predictive_ws/src/ropha_controller_interface/src/trajectory.json') as f:
+    rospack = rospkg.RosPack()
+    with open(os.path.join(rospack.get_path("ropha_controller_interface"), "src", "trajectory.json")) as f:
         data = json.load(f)
+    #with open('/home/myp-stud/predictive_ws/src/ropha_controller_interface/src/trajectory.json') as f:
+    #    data = json.load(f)
         [joint, pos, time, vel, acc] = trajectory.read_data()
         #print(joint)
         trajectory.goal.trajectory.joint_names = joint
