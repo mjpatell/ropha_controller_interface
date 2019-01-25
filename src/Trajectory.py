@@ -39,14 +39,15 @@ class Trajectory:
         """
         point = JointTrajectoryPoint()
         point.positions = positions
-        print(positions)
+        #print("position: ", positions)
         point.velocities = velocity
-        print(velocity)
+        #print(velocity)
         point.accelerations = acceleration
-        print(acceleration)
+        #print(acceleration)
         point.time_from_start = rospy.Duration(time)
-        print(time)
+        #print(time)
         self.goal.trajectory.points.append(point)
+        #sprint(self.goal.trajectory.points)
 
     def start(self):
         """
@@ -55,6 +56,8 @@ class Trajectory:
         """
         self.goal.trajectory.header.stamp = rospy.Time(0.0)
         self.client.send_goal(self.goal)
+        print("*********************************")
+        self.client.wait_for_result()
 
     def stop(self):
         """
@@ -82,15 +85,16 @@ class Trajectory:
             self.add_point(pos[i], vel[i], acc[i], time[i])
             print(i)
 
-            self.start()
+        self.start()
 
         #time_before_result = self.client.wait_for_result(rospy.Duration(10))
 
         #if (time_before_result and self.client.get_state() is 10):
         #    print "Finish first trajectory execution"
 
-        self.clear_goal()
-        self.client.wait_for_result()
+            #self.clear_goal()
+
+
 
 
     def read_data(self):
